@@ -1,0 +1,119 @@
+.container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0b3b8c, #60a5fa);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .1);
+    padding: 1.5rem;
+    max-width: 1000px;
+    width: 100%
+}
+
+.title {
+    margin: 0 0 1rem;
+    color: #2d3748
+}
+
+.top-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem
+}
+
+.filters {
+    display: flex;
+    gap: .75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem
+}
+
+.input {
+    flex: 1;
+    min-width: 220px;
+    padding: .75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px
+}
+
+.btn {
+    padding: .75rem 1.25rem;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #60a5fa, #0b3b8c);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer
+}
+
+.btn.small {
+    padding: .4rem .6rem;
+    border-radius: 8px;
+    font-size: .85rem
+}
+
+.btn.small.danger {
+    background: #e53e3e
+}
+
+/* Botões de ação positivos (Editar/Atualizar) em verde */
+.btn.success {
+    background: #22c55e; /* green-500 */
+    color: #fff;
+}
+.btn.success:hover {
+    filter: brightness(0.95);
+}
+
+.btn.btn-secondary {
+    background: #f7fafc;
+    color: #4a5568;
+    border: 2px solid #e2e8f0
+}
+
+.table-wrapper {
+    overflow: auto;
+    border: 1px solid #edf2f7;
+    border-radius: 12px
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse
+}
+
+thead {
+    background: #f7fafc
+}
+
+th,
+td {
+    padding: .75rem;
+    border-bottom: 1px solid #edf2f7;
+    text-align: left;
+    white-space: nowrap
+}
+
+.muted {
+    color: #718096;
+    text-align: center;
+    padding: 1rem
+}
+
+.alert.error {
+    background: #fff5f5;
+    border: 1px solid #feb2b2;
+    color: #c53030;
+    padding: .75rem;
+    border-radius: 8px;
+    margin-bottom: .75rem
+}
