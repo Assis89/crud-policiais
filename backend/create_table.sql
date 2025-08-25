@@ -7,7 +7,7 @@ CREATE TABLE policiais (
     rg_militar VARCHAR(20) NOT NULL UNIQUE,
     cpf VARCHAR(14) NOT NULL UNIQUE,
     data_nascimento VARBINARY(255) NOT NULL,
-    matricula VARCHAR(50)
+    matricula VARBINARY(255) NOT NULL
 );
 
 -- Índices para otimizar consultas por CPF e matrícula
