@@ -52,7 +52,8 @@
     background: linear-gradient(135deg, #60a5fa, #0b3b8c);
     color: #fff;
     font-weight: 600;
-    cursor: pointer
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .2s ease, filter .15s ease
 }
 
 .btn.small {
@@ -83,7 +84,8 @@
 .table-wrapper {
     overflow: auto;
     border: 1px solid #edf2f7;
-    border-radius: 12px
+    border-radius: 12px;
+    background: #fff
 }
 
 table {
@@ -100,8 +102,18 @@ td {
     padding: .75rem;
     border-bottom: 1px solid #edf2f7;
     text-align: left;
-    white-space: nowrap
+    white-space: nowrap;
+    vertical-align: middle
 }
+
+/* Estados e interações sutis */
+.btn:hover { transform: translateY(-1px); box-shadow: 0 6px 12px rgba(0,0,0,.12); }
+.btn:active { transform: translateY(0); filter: brightness(.98); }
+.btn:disabled { opacity: .7; cursor: not-allowed; box-shadow: none; transform: none; }
+
+tbody tr:hover { background: #f9fafb; }
+
+.filters .input:focus { outline: none; box-shadow: 0 0 0 3px rgba(96,165,250,.2); }
 
 .muted {
     color: #718096;

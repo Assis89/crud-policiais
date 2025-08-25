@@ -96,7 +96,7 @@ import { Policial } from '../models/policial.model';
           <div class="form-actions">
             <button 
               type="submit" 
-              class="btn btn-primary" 
+              class="btn btn--md btn-primary" 
               [disabled]="cadastroForm.invalid || loading"
             >
               {{ loading ? 'Cadastrando...' : 'Cadastrar Policial' }}
@@ -104,7 +104,7 @@ import { Policial } from '../models/policial.model';
             
             <button 
               type="button" 
-              class="btn btn-secondary" 
+              class="btn btn--md btn-secondary" 
               (click)="voltarListagem()"
             >
               Voltar para Listagem
@@ -114,7 +114,7 @@ import { Policial } from '../models/policial.model';
           <div class="success-message" *ngIf="successMessage">
             {{ successMessage }}
             <div style="margin-top: 0.75rem; display: flex; justify-content: center;">
-              <button type="button" class="btn btn-secondary" (click)="voltarListagem()">
+              <button type="button" class="btn btn--md btn-secondary" (click)="voltarListagem()">
                 Ir para Listagem agora
               </button>
             </div>

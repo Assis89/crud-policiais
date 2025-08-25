@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Policial } from '../models/policial.model';
@@ -19,8 +19,11 @@ export class PoliciaisService {
       );
   }
 
-  listarPoliciais(): Observable<Policial[]> {
-    return this.http.get<Policial[]>(this.apiUrl)
+  listarPoliciais(params?: { cpf?: string; rg?: string; q?: string }): Observable<Policial[]> {
+    const options = params && (params.cpf || params.rg)
+      ? { params: new HttpParams({ fromObject: params as any }) }
+      : {};
+    return this.http.get<Policial[]>(this.apiUrl, options)
       .pipe(
         catchError(this.handleError)
       );

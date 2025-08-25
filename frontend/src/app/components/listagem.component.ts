@@ -16,10 +16,10 @@ import { Policial } from '../models/policial.model';
 
         <div class="top-actions">
           <div class="filters">
-          <input type="text" placeholder="Filtrar por CPF" [(ngModel)]="filtroCpf" (input)="onFiltroChange()" class="input" />
-          <button class="btn success" (click)="carregar()" [disabled]="loading">{{ loading ? 'Atualizando...' : 'Atualizar' }}</button>
+          <input type="text" placeholder="Filtrar por CPF ou RG" [(ngModel)]="filtro" (input)="onFiltroChange()" class="input" />
+          <button class="btn btn--md success" (click)="carregar()" [disabled]="loading">{{ loading ? 'Atualizando...' : 'Atualizar' }}</button>
           </div>
-          <a class="btn btn-secondary" routerLink="/cadastro">Novo cadastro</a>
+          <a class="btn btn--md btn-secondary" routerLink="/cadastro">Novo cadastro</a>
         </div>
 
         <div class="alert error" *ngIf="errorMessage">{{ errorMessage }}</div>
@@ -42,9 +42,9 @@ import { Policial } from '../models/policial.model';
                 <td>{{ formatCpfView(p.cpf) }}</td>
                 <td>{{ p.data_nascimento | date: 'dd/MM/yyyy' }}</td>
                 <td style="display:flex;gap:.5rem;align-items:center;white-space:nowrap">
-                  <span>{{ p.matricula }}</span>
-                  <button class="btn small success" (click)="editar(p)">Editar</button>
-                  <button class="btn small danger" (click)="excluir(p)">Excluir</button>
+                  <span class="muted">—</span>
+                  <button class="btn btn--sm small success" (click)="editar(p)">Editar</button>
+                  <button class="btn btn--sm small danger" (click)="excluir(p)">Excluir</button>
                 </td>
               </tr>
             </tbody>
@@ -61,7 +61,7 @@ export class ListagemComponent {
   policiais: Policial[] = [];
   loading = false;
   errorMessage = '';
-  filtroCpf = '';
+  filtro = '';
 
   constructor(private service: PoliciaisService) {}
 
@@ -72,12 +72,12 @@ export class ListagemComponent {
   carregar() {
     this.loading = true;
     this.errorMessage = '';
-    this.service.listarPoliciais().subscribe({
+  const q = (this.filtro || '').trim();
+  const params = q ? { q } : undefined;
+  this.service.listarPoliciais(params).subscribe({
       next: (dados: Policial[]) => {
-        const list = Array.isArray(dados) ? dados : [];
-        this.policiais = this.filtroCpf
-          ? list.filter(p => this.formatCpfView(p.cpf).includes(this.filtroCpf))
-          : list;
+    const list = Array.isArray(dados) ? dados : [];
+    this.policiais = list;
         this.loading = false;
       },
       error: (err: any) => {
@@ -91,8 +91,8 @@ export class ListagemComponent {
     this.carregar();
   }
 
-  trackById(_: number, item: Policial) {
-    return item.id ?? `${item.cpf}-${item.matricula}`;
+  trackById(index: number, item: Policial) {
+    return item.id ?? item.cpf ?? index;
   }
 
   formatCpfView(cpf: string) {
